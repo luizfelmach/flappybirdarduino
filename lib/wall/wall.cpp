@@ -6,9 +6,14 @@ Wall::Wall() {
     x = 120;
     y1 = random(1, 44);
     y2 = 64 - (y1 + hole);
+    inc = 2;
     scored = false;
 }
 
 void Wall::update() {
-    x -= 2;
+    x -= inc;
+}
+
+void Wall::stop() {
+    inc = 0;
 }

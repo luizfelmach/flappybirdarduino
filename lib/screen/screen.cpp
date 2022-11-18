@@ -52,7 +52,7 @@ void Screen::bird_jump() {
     if (collided) {
         return;
     }
-    bird.vy = -4;
+    bird.vy = -5;
 }
 
 void Screen::bird_check_collision() {
@@ -65,8 +65,18 @@ void Screen::bird_check_collision() {
     }
 
 
-    if ((bird.x >= walls[0].x or bird.x <= walls[0].x + 5)) {
+    if ((bird.x >= walls[0].x and bird.x <= walls[0].x + 5) and (bird.y <= walls[0].y1 or bird.y >= walls[0].y1 + walls[0].hole)) {
+        bird.acy  = 0;
+        bird.acx  = 0;
+        bird.vx  = 0;
+        bird.vy  = 0;
         collided = true;
+    }
+
+    if (collided) {
+        walls[0].stop();
+        walls[1].stop();
+        walls[2].stop();
     }
     
 }
